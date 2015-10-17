@@ -1,0 +1,33 @@
+body {
+    padding-top: 71px;
+}
+
+#map {
+    height:90vh
+}
+
+.menu {
+  position: fixed;
+  top: 25%;
+  width: 30%;
+  margin-top: -2.5em;
+  background: rgba(0, 0, 0, .3);
+  z-index: 20;
+}
+
+.location {
+    background: rgba(255, 255, 255, .7);
+    padding: 2px 2px 2px 10px;
+    margin-bottom: 4px;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .menu {
+        width: 100%;
+        top: 25%
+    }
+    nav>header {
+        display: none;
+    }
+}

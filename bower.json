@@ -1,0 +1,18 @@
+{
+  "name": "frontend-nanodegree-neighborhood-map",
+  "version": "0.0.1",
+  "homepage": "https://github.com/MarkitoMagic/frontend-nanodegree-neighborhood-map",
+  "authors": [
+    "MarkitoMagic <mark.thompson19@gmail.com>"
+  ],
+  "description": "Udacity Neighborhood Map Project (Neighborhoodish)",
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "knockout": "~3.3.0",
+    "bootstrap": "~3.3.5"
+  }
+}

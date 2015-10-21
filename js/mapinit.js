@@ -1,7 +1,8 @@
 var app = app || {};
 
-(function () {
+(function (app) {
     'use strict';
+
     app.initMap = function () {
         // Configure the map
         app.map = new google.maps.Map(document.getElementById('map'), {
@@ -12,4 +13,4 @@ var app = app || {};
         });
         console.log('In your right mind');
     };
-})();
+})(app);

@@ -3,10 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Neighborhoodish</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+        <title>Neighborhood Scoop</title>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link href='https://fonts.googleapis.com/css?family=Alfa+Slab+One' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div class="panel panel-default menu">
@@ -19,25 +20,43 @@
                     </span>
                     <input type="text" class="form-control" placeholder="Filter Locations">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        <button class="btn btn-default"
+                                data-bind="click: updateShowLocations"
+                                type="button">
+                            <i class="glyphicon glyphicon-chevron-up"
+                               data-bind="css: { 'glyphicon-chevron-up': showLocations(), 'glyphicon-chevron-down': !showLocations()}"></i>
                         </button>
                     </span>
                 </div>
                 <label><input type="checkbox"> Use my current location</label>
+                <button data-bind="click: updateShowWelcome"> Change Address</button>
             </div>
-            <div class="panel-body">
+            <div class="panel-body" data-bind="css: { hide: !showLocations() }">
                 <div class="location"><h4>Location 1</h4></div>
                 <div class="location"><h4>Location 1</h4></div>
                 <div class="location"><h4>Location 1</h4></div>
                 <div class="location"><h4>Location 1</h4></div>
             </div>
         </div>
-        <div id="welcome-screen" class="welcome-screen">
-            <h1>Neighborhood Scoop<small>Finding Awesome In Your Hood!</small></h1>
+        <div id="welcomeScreen" class="welcome-screen" data-bind="css: { 'hide-welcome-screen': !showWelcome(), 'show-welcome-screen': showWelcome() }">
+            <h1 class="ws-header text-center">Neighborhood Scoop</h1>
+            <div id="copy-and-address" class="welcome-content">
+                <p>Get the scoop on all the cool things in your hood!</p>
+                <p>Let's get started by entering your address below:</p>
+                <div class="form-group">
+                    <form id='addressForm' data-bind="submit: submitAddress">
+                        <input class="form-control"
+                               id="address"
+                               data-bind="textInput: address"
+                               placeholder="where to search">
+                    </form>
+                </div>
+            </div>
         </div>
         <div id="map"></div>
         <script src="js/mapinit.js"></script>
+        <script src="js/registerevents.js"></script>
+        <script src='bower_components/knockout/dist/knockout.js'></script>
         <script src="js/app.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFNVE7q2V_SndbU3tHKsxX8gJu7fQeoKQ&callback=app.initMap"
             async defer></script>

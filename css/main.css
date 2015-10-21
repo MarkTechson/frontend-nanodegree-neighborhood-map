@@ -8,7 +8,8 @@
   left: 0;
   width: 30%;
   margin: 8px 0 8px 8px;
-  background: rgba(0, 0, 0, .3);
+  background-color: rgba(245, 245, 220, .6);
+  border: solid 1px #805725;
   z-index: 10;
 }
 
@@ -23,7 +24,23 @@
     background-image: url(../img/city_scape_bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    font-family: 'Alfa Slab One', cursive;
 }
+
+.welcome-content {
+    width: 25%;
+    margin: 0px auto;
+    background-color: rgba(245, 245, 220, .6);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.ws-header {
+    font-size: 80px;
+    margin-top: 10%;
+    color: #805725;
+}
+
 .location {
     background: rgba(255, 255, 255, .7);
     padding: 2px 2px 2px 10px;
@@ -31,12 +48,42 @@
     border-radius: 3px;
 }
 
+.hide-welcome-screen {
+    transform: translateY(-100vh);
+    transition: .5s ease-in-out;
+}
+
+.show-welcome-screen {
+    top: 0;
+    left: 0;
+    transition: .5s ease-in-out;
+}
+
+.hide {
+    display: none;
+}
+
 @media (max-width: 768px) {
+    .shift-top {
+        background-color: rgba(245, 245, 220, 1);
+        transform: translateY(-100%);
+        transition: .3s ease-in-out;
+    }
+    .shift-down {
+        background-color: rgba(245, 245, 220, .6);
+        transform: translateY(4%);
+        transition: .3s ease-in-out;
+    }
+
     .menu {
         width: 95%;
     }
-}
-.slide-up {
-    transform: translateY(-100vh);
-    transition: .5s ease-in-out;
+    .ws-header {
+        font-size: 40px;
+        margin-top: 20%;
+    }
+    .welcome-content {
+        width: 80%;
+        font-size: 16px;
+    }
 }

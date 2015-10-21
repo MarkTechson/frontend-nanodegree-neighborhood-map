@@ -11,6 +11,5 @@ var app = app || {};
             mapTypeControl: false,
             minZoom: 10
         });
-        console.log('In your right mind');
     };
 })(app);

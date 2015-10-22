@@ -14,13 +14,13 @@
             <div class="panel-heading">
                 <div class="input-group input-group-sm">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
+                        <button class="btn btn-ns-default" type="button">
                             <i class="glyphicon glyphicon-menu-hamburger"></i>
                         </button>
                     </span>
-                    <input type="text" class="form-control" placeholder="Filter Locations">
+                    <input type="text" data-bind="textInput: locationFilter" class="form-control ns-control" placeholder="Filter Locations">
                     <span class="input-group-btn">
-                        <button class="btn btn-default"
+                        <button class="btn btn-ns-default"
                                 data-bind="click: updateShowLocations"
                                 type="button">
                             <i class="glyphicon glyphicon-chevron-up"
@@ -28,14 +28,11 @@
                         </button>
                     </span>
                 </div>
-                <label><input type="checkbox"> Use my current location</label>
-                <button data-bind="click: updateShowWelcome"> Change Address</button>
+                <label><input type="checkbox"> Use my current location <span data-bind="text: locationFilter"></span></label>
+                <button class="btn btn-ns-default" data-bind="click: updateShowWelcome"> Change Address</button>
             </div>
-            <div class="panel-body" data-bind="css: { hide: !showLocations() }">
-                <div class="location"><h4>Location 1</h4></div>
-                <div class="location"><h4>Location 1</h4></div>
-                <div class="location"><h4>Location 1</h4></div>
-                <div class="location"><h4>Location 1</h4></div>
+            <div class="panel-body" data-bind="foreach: filteredLocations, css: { hide: !showLocations() }">
+                <div class="location"><h4 data-bind="text: $data"></h4></div>
             </div>
         </div>
         <div id="welcomeScreen" class="welcome-screen" data-bind="css: { 'hide-welcome-screen': !showWelcome(), 'show-welcome-screen': showWelcome() }">
@@ -49,6 +46,10 @@
                                id="address"
                                data-bind="textInput: address"
                                placeholder="where to search">
+                    <div class="text-center">
+                        <p data-bind="text: message, css: { 'error': isError }"></p>
+                        <button type="submit" class="btn btn-ns-default margin-top-10px">Submit</button>
+                    </div>
                     </form>
                 </div>
             </div>
@@ -58,7 +59,6 @@
         <script src="js/registerevents.js"></script>
         <script src='bower_components/knockout/dist/knockout.js'></script>
         <script src="js/app.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFNVE7q2V_SndbU3tHKsxX8gJu7fQeoKQ&callback=app.initMap"
-            async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFNVE7q2V_SndbU3tHKsxX8gJu7fQeoKQ&callback=app.initMap" async defer></script>
     </body>
 </html>

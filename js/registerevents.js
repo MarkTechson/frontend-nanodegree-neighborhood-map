@@ -22,12 +22,5 @@
                 welcomeDiv.className = "welcome-content shift-down";
             });
         }
-
-        // On the submit event, hide the splash screen
-        // addressForm.addEventListener('submit', function (e) {
-        //     welcomeScreen.className = "welcome-screen hide-welcome-screen";
-        //     addressInput.blur();
-        //     e.preventDefault();
-        // });
     }
 })(app);

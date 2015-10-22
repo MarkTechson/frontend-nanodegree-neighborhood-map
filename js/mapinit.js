@@ -11,5 +11,13 @@ var app = app || {};
             mapTypeControl: false,
             minZoom: 10
         });
+
+        var geocoder = new google.maps.Geocoder();
+        // Configure geocoder service
+        app.geocodeByAddress = function (address, callback) {
+            geocoder.geocode({'address': address}, function(results, status) {
+                callback(results, status);
+            });
+        };
     };
 })(app);

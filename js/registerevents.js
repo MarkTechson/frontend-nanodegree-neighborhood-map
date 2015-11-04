@@ -1,9 +1,8 @@
-(function (app) {
+(function() {
     'use strict';
 
     var welcomeDiv = document.getElementById('copy-and-address');
     var addressInput = document.getElementById('address');
-    var addressForm = document.getElementById('addressForm');
 
     registerUIEvents();
 
@@ -23,4 +22,4 @@
             });
         }
     }
-})(app);
+})();

@@ -17,8 +17,8 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     z-index: 11;
     background-color: #C1E6EE;
     background-image: url(../img/city_scape_bg.jpg);
@@ -50,7 +50,7 @@
 }
 
 .hide-welcome-screen {
-    transform: translateY(-100vh);
+    transform: translateY(-150%);
     transition: .5s ease-in-out;
 }
 
@@ -94,7 +94,35 @@
     color: red;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
+.possible-address-list {
+    overflow-y: auto;
+    height: 300px;
+}
+
+#addressList.address-list-container {
+    cursor: pointer;
+}
+
+#addressList .location:hover {
+    background-color: #E8DCBE;
+}
+
 @media (max-width: 768px) {
+    .hide-welcome-screen {
+        display: none;
+    }
+
+    .address-list-container {
+        position: absolute;
+        top: 5%;
+        left: 10%;
+        background-color: rgba(245, 245, 220, 1);
+    }
+
     .shift-top {
         background-color: rgba(245, 245, 220, 1);
         transform: translateY(-100%);

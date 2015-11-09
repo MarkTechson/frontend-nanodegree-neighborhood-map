@@ -51,10 +51,12 @@
         vm.showHome = showHome;
 
         // Properties defined on the vm
+        vm.currentWeather = ko.observable('');
         vm.showRandomLoadingMessage = ko.observable('');
         vm.locations = ko.observableArray([]);
         vm.address = ko.observable('');
         vm.locationFilter = ko.observable('');
+        vm.doctorGender = ko.observable('both');
         vm.filteredLocations = ko.computed(filterLocationsCompOb);
         vm.showLocations = ko.observable(true);
         vm.showWelcome = ko.observable(true);
@@ -65,6 +67,7 @@
         vm.hasPossibleLocations = ko.computed(function () {
             return vm.possibleLocations().length > 0;
         });
+        vm.isLoading = ko.observable(false);
 
         // Initialize components
         init();
@@ -85,7 +88,7 @@
 
 
         function selectLocation(location) {
-            mapApi.highlightMarker(location.id, location.type, true, location.latLong);
+            mapApi.highlightMarker(location.id, location.type, location.content, true);
         }
 
         function clearMessages() {
@@ -112,31 +115,41 @@
 
         function filterLocationsCompOb () {
             var filterTerm = vm.locationFilter().toLowerCase();
-            var result = vm.locations();
 
-            if (filterTerm.length > 0) {
-                result = result.filter(function (item) {
-                    var element = item.address ? item.address.toLowerCase() : '';
+            var result = vm.locations().filter(function (location) {
+                var genderFlag = true;
+                var textFlag = true;
+                var keepAddress = true;
 
-                    var keepAddress = element.indexOf(filterTerm) >= 0;
+                var address;
 
-                    if (keepAddress) {
-                        mapApi.showMarker(item.id);
-                    } else {
-                        mapApi.clearMarker(item.id);
-                    }
+                // Filter by gender
+                if (vm.doctorGender() !== "both") {
+                    genderFlag = location.gender === vm.doctorGender();
+                }
 
-                    return keepAddress;
-                });
-            } else {
-                mapApi.showAllMarkers();
-            }
+                // Filter by match
+                if (filterTerm.length > 0) {
+                    address = location.address ? location.address.toLowerCase() : '';
+                    textFlag = address.indexOf(filterTerm) >= 0;
+                }
+
+                keepAddress = genderFlag && textFlag;
+
+                if (keepAddress) {
+                    mapApi.showMarker(location.id);
+                } else {
+                    mapApi.clearMarker(location.id);
+                }
+
+                return keepAddress;
+            });
 
             return result;
         }
 
         function showHome() {
-            mapApi.highlightMarker('user-home-location', HOME, true);
+            mapApi.highlightMarker('user-home-location', HOME, '', true);
         }
 
         function updateShowWelcome() {
@@ -156,6 +169,7 @@
             selectedPlace.name = selectedPlace.name ? selectedPlace.name : vm.address();
 
             if (selectedPlace.name.trim().length > 0) {
+                vm.isLoading(true);
                 resetUI();
                 vm.message("Please wait - " + getRandomLoadingMessage(loadingMessages));
 
@@ -184,19 +198,26 @@
         }
 
         function updateMapWithLocationData(location) {
+            vm.locations([]);
+            vm.currentWeather('');
             mapApi.setHomeLocation(location, HOME);
+
             api.getWeather(location).then(function(result) {
                 // Process the weather data
+                if (result.status !== false) {
+                    vm.currentWeather(result.main.temp);
+                }
 
                 return api.getDoctors(location, distance).then(function (doctorResult) {
                     // Process the doctor locations
                     doctorResult.forEach(function (doctor) {
                         vm.locations.push(doctor);
-                        mapApi.addMarker(doctor.latLong, doctor.id, doctor.type);
+                        mapApi.addMarker(doctor.latLong, doctor.id, doctor.type, doctor.content, true);
                     });
 
                     clearMessages();
                     updateShowWelcome();
+                    vm.isLoading(false);
                 });
             });
         }

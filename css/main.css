@@ -21,7 +21,7 @@
     width: 100%;
     z-index: 11;
     background-color: #C1E6EE;
-    background-image: url(../img/city_scape_bg.jpg);
+    background-image: url(../img/doctor.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     font-family: 'Alfa Slab One', cursive;
@@ -30,9 +30,13 @@
 .welcome-content {
     width: 25%;
     margin: 0px auto;
-    background-color: rgba(245, 245, 220, .6);
+    background-color: rgba(245, 245, 220, .8);
     padding: 10px;
     border-radius: 5px;
+}
+
+.block-center {
+    margin: 0 auto;
 }
 
 .ws-header {
@@ -47,6 +51,11 @@
     margin-bottom: 4px;
     border-radius: 3px;
     border: solid 1px #C3B593;
+}
+
+.location:hover {
+    background-color: #EFDDAC;
+    border: 1px solid #7D715A;
 }
 
 .hide-welcome-screen {
@@ -103,6 +112,18 @@
     height: 300px;
 }
 
+.doctor-bio {
+    padding: 5px;
+    border: 1px solid #8a6d3b;
+    border-radius: 5px;
+    margin-top: 5px;
+    background: #F1F0DA;
+}
+
+.doctor-photo {
+    border-radius: 50%;
+    border: dashed 10px #8a6d3b;
+}
 #addressList.address-list-container {
     cursor: pointer;
 }

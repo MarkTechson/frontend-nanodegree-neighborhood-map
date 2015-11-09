@@ -7,6 +7,7 @@ var mapApi = mapApi || {};
     var icons = {};
     var events = [];
     var markers = {};
+    var infoWindow;
     var selected;
 
     // This api method allows us to queue events to be registered when the map
@@ -25,7 +26,7 @@ var mapApi = mapApi || {};
         icons[icon].alt = alt;
     }
 
-    mapApi.highlightMarker = function(id, type, animate) {
+    mapApi.highlightMarker = function(id, type, content, animate) {
         var timeout = -1;
 
         // If the selected exists, deselected it and clear the timeout
@@ -36,6 +37,12 @@ var mapApi = mapApi || {};
         }
 
         markers[id].setIcon(icons[type].alt);
+
+        // Open the infoWindow
+        if (content.length > 0) {
+            infoWindow.setContent(content);
+            infoWindow.open(mapApi.map, markers[id]);
+        }
 
         if (animate) {
             // Shift the map to the location of the marker
@@ -57,7 +64,7 @@ var mapApi = mapApi || {};
         };
     };
 
-    mapApi.addMarker = function(latLong, id, type, interactive) {
+    mapApi.addMarker = function(latLong, id, type, content, interactive) {
         if (interactive === undefined) {
             interactive = true;
         }
@@ -73,7 +80,7 @@ var mapApi = mapApi || {};
         if (interactive) {
             //Register the click event
             marker.addListener('click', function () {
-                mapApi.highlightMarker(id, type, false);
+                mapApi.highlightMarker(id, type, content, true);
             });
         }
 
@@ -108,11 +115,15 @@ var mapApi = mapApi || {};
 
     mapApi.setHomeLocation = function(latLong, type) {
         mapApi.map.setCenter(latLong);
-        mapApi.addMarker(latLong, 'user-home-location', type, false);
+        mapApi.addMarker(latLong, 'user-home-location', type, '', false);
     };
 
     function toggleMarker(id, value) {
-        markers[id].setMap(value);
+        if (markers[id]) {
+            if (markers[id].getMap() !== value) {
+                markers[id].setMap(value);
+            }
+        }
     }
 
     mapApi.initMap = function() {
@@ -131,6 +142,11 @@ var mapApi = mapApi || {};
                 callback(results, status);
             });
         };
+
+        // Configure the info window
+        infoWindow = new google.maps.InfoWindow({
+            maxWidth: 300
+        });
 
         // Define the auto complete
         mapApi.autocomplete = {};

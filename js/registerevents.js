@@ -6,10 +6,12 @@
 
     registerUIEvents();
 
+    /**
+     * There is a bug with android mobile that causes some forms to be hidden
+     * by the softkeyboard, in this case, let's move the input to the top
+     * of the screen
+     */
     function registerUIEvents() {
-        // There is a bug with android mobile that causes some forms to be hidden
-        // by the softkeyboard, in this case, let's move the input to the top
-        // of the screen
         var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
 
         if(isAndroid) {

@@ -57,7 +57,7 @@
                     <img data-bind="click: showHome" src="img/my-location.png" class="pointer" alt="My Location">
                     <span data-bind="text: address"></span>
                     <span data-bind="visible: currentWeather().length > 0">(<span data-bind="text: currentWeather"></span>&deg;)</span>
-                    <a href="#" data-bind="click: updateShowWelcome">Change Address</a>
+                    <p><a href="#" data-bind="click: updateShowWelcome">Change Address</a><p>
                 </p>
                 <div class="radio">
                     <label>
@@ -72,7 +72,10 @@
                 </div>
             </div>
             <div class="panel-body" data-bind="foreach: filteredLocations, css: { hide: !showLocations() }">
-                <div class="location pointer" data-bind="click: $parent.selectLocation"><h4 data-bind="text: $data.address"></h4></div>
+                <div class="location pointer" data-bind="click: $parent.selectLocation, css: { 'location-selected': $parent.isLocationSelected($data.id) }">
+                    <div><strong data-bind="text: $data.name"></strong></div>
+                    <span data-bind="text: $data.address"></span> - <em data-bind="text: $data.distance"></em>&nbsp;mi
+                </div>
             </div>
         </div>
         <div id="welcomeScreen" class="welcome-screen" data-bind="css: { 'hide-welcome-screen': !showWelcome(), 'show-welcome-screen': showWelcome() }">
@@ -105,8 +108,6 @@
                 </div>
                 <button class="btn btn-ns-default margin-top-10px" data-bind="click: clearPossibleLocations">Change</button>
             </div>
-        </div>
-
         </div>
         <div id="map"></div>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>

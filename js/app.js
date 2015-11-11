@@ -85,6 +85,7 @@
             // Regsister an event to keep track if the place changed
             mapApi.registerEvent('place_changed', function () {
                 vm.address(mapApi.autocomplete.getPlace().formatted_address);
+                submitAddress();
             });
 
             mapApi.markerOnClick(function (id) {
@@ -237,34 +238,12 @@
             // Clear any UI messages
             clearMessages();
 
-            selectedPlace.name = selectedPlace.name ? selectedPlace.name : vm.address();
-
-            if (selectedPlace.name.trim().length > 0) {
+            if (selectedPlace.place_id) {
                 vm.isLoading(true);
                 resetUI();
                 vm.message("Please wait - " + getRandomLoadingMessage(loadingMessages));
 
-                // Check to see if user selected an autocomplete option
-                if (selectedPlace.place_id) {
-                    updateMapWithLocationData(selectedPlace.geometry.location);
-                } else {
-                    mapApi.geocodeByAddress(selectedPlace.name, function (result, status) {
-                        if (status === google.maps.GeocoderStatus.OK) {
-                            clearMessages();
-                            if (result.length > 1) {
-                                // Present the user with an option to select which address
-                                // to use
-                                vm.possibleLocations(result);
-                            } else {
-                                vm.address(result[0].formatted_address);
-                                updateMapWithLocationData(result[0].geometry.location);
-                            }
-                        } else {
-                            vm.isError(true);
-                            vm.message('Error - ' + getRandomLoadingMessage(errorMessages) + '. Check your address.');
-                        }
-                    });
-                }
+                updateMapWithLocationData(selectedPlace.geometry.location);
             }
         }
 
@@ -279,6 +258,7 @@
             vm.currentWeather('');
             mapApi.setHomeLocation(location, HOME);
             vm.doctorGender('both');
+            vm.selectedId('');
 
             api.getWeather(location).then(function(result) {
                 // Process the weather data

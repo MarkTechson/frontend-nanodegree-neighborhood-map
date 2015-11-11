@@ -57,7 +57,7 @@ var api = api || {};
                     var practice = doctor.practices[0];
 
                     // Give each of the practices a unique id
-                    response.id = '**betterdoctor**' + practice.uid;
+                    response.id = '**betterdoctor**' + doctor.uid;
                     response.type = 'hospital';
                     response.latLong = {
                         lat: practice.lat,

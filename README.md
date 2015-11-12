@@ -33,7 +33,7 @@ $ grunt dist
 * [Handlebars.js](http://handlebarsjs.com/)
 * [CSS-Spinners](http://www.css-spinners.com/)
 * [Q](https://github.com/kriskowal/q)
-* Bootstrap
+* [Bootstrap](http://getbootstrap.com/)
 
 The output will then be in the ```dist``` directory and you may use your own build server.
 ### Attribution

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-        <title>Neighborhood Scoop</title>
+        <title>Private Practice</title>
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="bower_components/css-spinners/css/spinner/spinner.css" type="text/css">
@@ -12,12 +12,12 @@
         <!-- Handlebars template for the InfoWindows -->
         <script id="infowindow-template" type="text/x-handlebars-template">
             <div class="row">
-                <div class="col-md-6">
-                    <img class="doctor-photo" src="{{profilePicture}}" alt="Profile Photo for {{name}}">
+                <div class="col-md-6 doctor-photo">
+                    <img class="img-circle img-responsive" src="{{profilePicture}}" alt="Profile Photo for {{name}}">
                 </div>
-                <div class="col-md-6">
-                    <div><b>{{name}}</b></div>
-                    <div>{{address}}</div>
+                <div class="col-md-6 col-sm-12">
+                    <div><strong>{{name}}</strong></div>
+                    <div class="doctor-address">{{address}}</div>
                     <div><a href="{{attributionUrl}}" target="_blank">View Full Profile</a></div>
                 </div>
             </div>
@@ -38,11 +38,6 @@
         <div class="panel panel-default menu">
             <div class="panel-heading">
                 <div class="input-group input-group-sm">
-                    <span class="input-group-btn">
-                        <button class="btn btn-ns-default" type="button">
-                            <i class="glyphicon glyphicon-menu-hamburger"></i>
-                        </button>
-                    </span>
                     <input type="text" data-bind="textInput: locationFilter" class="form-control ns-control" placeholder="Filter Locations">
                     <span class="input-group-btn">
                         <button class="btn btn-ns-default"
@@ -57,9 +52,10 @@
                     <img data-bind="click: showHome" src="img/my-location.png" class="pointer" alt="My Location">
                     <span data-bind="text: address"></span>
                     <span data-bind="visible: currentWeather().length > 0">(<span data-bind="text: currentWeather"></span>&deg;)</span>
-                    <p><a href="#" data-bind="click: updateShowWelcome">Change Address</a><p>
+
                 </p>
                 <div class="radio">
+                    <a href="#" data-bind="click: updateShowWelcome">Change Address</a>
                     <label>
                         <input type="radio" name="docGender" value="male" data-bind="checked: doctorGender">Male
                     </label>
@@ -71,7 +67,7 @@
                     </label>
                 </div>
             </div>
-            <div class="panel-body" data-bind="foreach: filteredLocations, css: { hide: !showLocations() }">
+            <div class="panel-body locations-panel" data-bind="foreach: filteredLocations, css: { hide: !showLocations() }">
                 <div class="location pointer" data-bind="click: $parent.selectLocation, css: { 'location-selected': $parent.isLocationSelected($data.id) }">
                     <div><strong data-bind="text: $data.name"></strong></div>
                     <span data-bind="text: $data.address"></span> - <em data-bind="text: $data.distance"></em>&nbsp;mi
@@ -110,7 +106,6 @@
         <script src="bower_components/q/q.js"></script>
         <script src="js/vendor/knockout-3.3.0.js"></script>
         <script src="js/mapapi.js"></script>
-        <script src="js/registerevents.js"></script>
         <script src="js/api.js"></script>
         <script src="js/app.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFNVE7q2V_SndbU3tHKsxX8gJu7fQeoKQ&callback=mapApi.initMap&libraries=places" async defer></script>

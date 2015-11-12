@@ -125,10 +125,6 @@
     background: #F1F0DA;
 }
 
-.doctor-photo {
-    border-radius: 50%;
-    border: dashed 10px #8a6d3b;
-}
 #addressList.address-list-container {
     cursor: pointer;
 }
@@ -137,9 +133,14 @@
     background-color: #E8DCBE;
 }
 
+
 @media (max-width: 768px) {
-    .hide-welcome-screen {
-        display: none;
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 12px;
     }
 
     .address-list-container {
@@ -149,26 +150,41 @@
         background-color: rgba(245, 245, 220, 1);
     }
 
-    .shift-top {
-        background-color: rgba(245, 245, 220, 1);
-        transform: translateY(-100%);
-        transition: .3s ease-in-out;
-    }
-    .shift-down {
-        background-color: rgba(245, 245, 220, .6);
-        transform: translateY(4%);
-        transition: .3s ease-in-out;
-    }
-
     .menu {
         width: 95%;
     }
+
     .ws-header {
         font-size: 40px;
         margin-top: 20%;
     }
+
     .welcome-content {
         width: 80%;
         font-size: 16px;
+    }
+
+    .doctor-photo {
+        display: none;
+    }
+
+    .doctor-bio {
+        max-height: 130px;
+        overflow-y: scroll;
+    }
+
+    .locations-panel {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 768px) and (orientation: landscape) {
+    .menu {
+        width: 45%;
+    }
+
+    .doctor-bio, .doctor-address {
+        max-width: 130px;
     }
 }

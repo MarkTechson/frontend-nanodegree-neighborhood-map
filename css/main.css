@@ -1,18 +1,4 @@
-#map {
-    height:100vh;
-}
-
-.menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 30%;
-  margin: 8px 0 8px 8px;
-  background-color: rgba(245, 245, 220, .8);
-  border: solid 1px #805725;
-  z-index: 10;
-}
-
+/* Welcome Screen */
 .welcome-screen {
     position: fixed;
     top: 0;
@@ -20,47 +6,19 @@
     height: 100%;
     width: 100%;
     z-index: 11;
-    background-color: #C1E6EE;
-    background-image: url(../img/doctor.jpg);
-    background-repeat: no-repeat;
+    background: url(../img/doctor.jpg) no-repeat #C1e6ee;
     background-size: cover;
-    font-family: 'Alfa Slab One', cursive;
+    font-family: "Alfa Slab One", cursive;
 }
 
 .welcome-content {
     width: 25%;
-    margin: 0px auto;
-    background-color: rgba(245, 245, 220, .8);
+    margin: 0 auto;
+    /* Fallback color */
+    background: rgb(245, 245, 220);
+    background: rgba(245, 245, 220, .8);
     padding: 10px;
     border-radius: 5px;
-}
-
-.block-center {
-    margin: 0 auto;
-}
-
-.ws-header {
-    font-size: 80px;
-    margin-top: 10%;
-    color: #805725;
-}
-
-.location {
-    background: rgba(255, 255, 255, .7);
-    padding: 1px 2px 1px 10px;
-    margin-bottom: 4px;
-    border-radius: 3px;
-    border: solid 1px #C3B593;
-}
-
-.location:hover {
-    background-color: #FBF1D6;
-    border: 1px solid #7D715A;
-}
-
-.location-selected {
-    background-color: #EFDDAC;
-    border: 1px solid #7D715A;
 }
 
 .hide-welcome-screen {
@@ -74,21 +32,83 @@
     transition: .5s ease-in-out;
 }
 
+.block-center {
+    margin: 0 auto;
+}
+
+.ws-header {
+    font-size: 80px;
+    margin-top: 10%;
+    color: #805725;
+}
+
+/* Map Layer / Menu */
+.map {
+    height:100vh;
+}
+
+.doctor-bio {
+    padding: 5px;
+    border: 1px solid #8a6d3b;
+    border-radius: 5px;
+    margin-top: 5px;
+    background: #f1f0da;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 30%;
+  margin: 8px 0 8px 8px;
+  /* Fallback color */
+  background: rgb(245, 245, 220);
+  background: rgba(245, 245, 220, .8);
+  border: solid 1px #805725;
+  z-index: 10;
+}
+
+.location {
+    /* Fallback color */
+    background: rgb(255, 255, 255);
+    background: rgba(255, 255, 255, .7);
+    padding: 1px 2px 1px 10px;
+    margin: 0 0 4px 0;
+    border-radius: 3px;
+    border: solid 1px #c3b593;
+}
+
+.location:hover {
+    background: #fbf1d6;
+    border: 1px solid #7d715a;
+}
+
+.location-selected {
+    background: #efddac;
+    border: 1px solid #7d715a;
+}
+
+.panel-default > .panel-heading{
+    background: #dac5a0;
+    border-bottom: solid 1px #805725;
+}
+
+.menu label {
+    color: #613b0e;
+}
+
+/* General components and UI element styling */
 .hide {
     display: none;
 }
 
-.margin-top-10px {
-    margin-top: 10px;
+.btn-ns-submit {
+    margin: 10px 0 0 0;
 }
 
 .btn-ns-default {
-    background-color: #EFDDAC;
+    background: #efddac;
     border: solid 1px #805725;
-}
-
-.menu label {
-    color: #613B0E;
 }
 
 .ns-control {
@@ -96,12 +116,7 @@
 }
 
 .btn-ns-default:hover {
-    background-color: #9E8464;
-}
-
-.panel-default > .panel-heading{
-    background-color: #DAC5A0;
-    border-bottom: solid 1px #805725;
+    background: #9e8464;
 }
 
 .error {
@@ -117,23 +132,7 @@
     height: 300px;
 }
 
-.doctor-bio {
-    padding: 5px;
-    border: 1px solid #8a6d3b;
-    border-radius: 5px;
-    margin-top: 5px;
-    background: #F1F0DA;
-}
-
-#addressList.address-list-container {
-    cursor: pointer;
-}
-
-#addressList .location:hover {
-    background-color: #E8DCBE;
-}
-
-
+/* Media Queries */
 @media (max-width: 768px) {
     h1 {
         font-size: 24px;
@@ -147,7 +146,9 @@
         position: absolute;
         top: 5%;
         left: 10%;
-        background-color: rgba(245, 245, 220, 1);
+        /* Fallback color */
+        background: rgb(245, 245, 220);
+        background: rgba(245, 245, 220, 1);
     }
 
     .menu {
@@ -184,7 +185,8 @@
         width: 45%;
     }
 
-    .doctor-bio, .doctor-address {
+    .doctor-bio,
+    .doctor-address {
         max-width: 130px;
     }
 }

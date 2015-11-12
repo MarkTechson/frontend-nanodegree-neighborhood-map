@@ -97,7 +97,7 @@ var api = api || {};
         function failFn(deferred) {
             deferred.resolve({
                 status: false
-            })
+            });
         }
 
         return makeApiCall(url + query + API_KEY, doneFn, failFn);

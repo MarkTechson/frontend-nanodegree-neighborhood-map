@@ -97,7 +97,7 @@ var mapApi = mapApi || {};
      *
      * @param {Function} callback a function to be executed when a marker is clicked
      */
-    mapApi.markerOnClick = function (callback) {
+    mapApi.markerOnClick = function(callback) {
         markerOnClickCallBack = callback;
     };
 

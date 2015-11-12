@@ -1,4 +1,4 @@
-/* globals ko, google, mapApi, api */
+/* globals ko, mapApi, api */
 
 /**
  * Application ViewModel for the Private Practice application.
@@ -81,7 +81,7 @@
          * Initialization function for configuring and initializing components
          * to be used in the view model.
          */
-        function init () {
+        function init() {
             // Regsister an event to keep track if the place changed
             mapApi.registerEvent('place_changed', function () {
                 vm.address(mapApi.autocomplete.getPlace().formatted_address);
@@ -166,7 +166,7 @@
          *
          * @returns {Array} filtered locations
          */
-        function filterLocationsCompOb () {
+        function filterLocationsCompOb() {
             var filterTerm = vm.locationFilter().toLowerCase();
 
             //Filter the locations property on the ViewModel
@@ -281,7 +281,7 @@
                     } else {
                         vm.isLoading(false);
                         vm.isError(true);
-                        vm.message('Okay, this is embarrassing...we can\'t seem to get the data. Can you please try again a little later?');
+                        vm.message("Yikes! " + getRandomLoadingMessage(errorMessages));
                     }
                 });
             });

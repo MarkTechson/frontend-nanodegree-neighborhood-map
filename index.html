@@ -88,7 +88,7 @@
                                placeholder="where to search">
                         <div class="text-center">
                             <p data-bind="text: message, css: { 'error': isError }"></p>
-                            <button type="submit" class="btn btn-ns-default margin-top-10px" data-bind="click: submitAddress, disable: isLoading()">
+                            <button type="submit" class="btn btn-ns-default btn-ns-submit" data-bind="click: submitAddress, disable: isLoading()">
                                 Submit
                             </button>
                         </div>
@@ -100,7 +100,7 @@
             </div>
         </div>
         <!-- The google map will be loaded into the div below -->
-        <div id="map"></div>
+        <div id="map" class="map"></div>
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="bower_components/handlebars/handlebars.min.js"></script>
         <script src="bower_components/q/q.js"></script>

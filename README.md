@@ -8,22 +8,22 @@ The Private Practice project allows users to enter a location and uses that loca
 1. Download this project or check out this repository
 1. Install ```node```
 1. Install bower
-```
+```bash
 $ npm install -g bower
 ```
 1. Install the dependencies
-```
+```bash
 $ npm install
 $ bower install
 ```
 1. Run the application with a webserver. For example:
-```
+```bash
 $ python -m SimpleHTTPServer 8000
 ```
 
 ### Advanced
 To Build the minified version of the project:
-```
+```bash
 $ grunt dist
 ```
 The output will then be in the ```dist``` directory and the same server information can be used as mentioned above in step #5.

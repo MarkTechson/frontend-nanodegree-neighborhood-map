@@ -15,6 +15,7 @@
     "bootstrap": "~3.3.5",
     "jquery": "~2.1.4",
     "q": "1.0.1",
-    "handlebars": "~4.0.4"
+    "handlebars": "~4.0.4",
+    "css-spinners": "~2.2.0"
   }
 }

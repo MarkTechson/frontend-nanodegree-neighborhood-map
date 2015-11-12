@@ -7,7 +7,7 @@ The Private Practice project allows users to enter a location and uses that loca
 ### Getting Started
 1. Download this project or check out this repository
 1. Install ```node```
-1. Install bower
+1. Install ```bower```
 ```bash
 $ npm install -g bower
 ```
@@ -16,18 +16,28 @@ $ npm install -g bower
 $ npm install
 $ bower install
 ```
-1. Run the application with a webserver. For example:
+1. Build and run the application as with ```Grunt```:
 ```bash
-$ python -m SimpleHTTPServer 8000
+$ grunt serve
 ```
 
 ### Advanced
-To Build the minified version of the project:
+To Build the minified version of the project only:
 ```bash
 $ grunt dist
 ```
-The output will then be in the ```dist``` directory and the same server information can be used as mentioned above in step #5.
+
+### What's Under the Hood?
+* [Jquery](https://jquery.com/)
+* [Knockout.js](http://knockoutjs.com/)
+* [Handlebars.js](http://handlebarsjs.com/)
+* [CSS-Spinners](http://www.css-spinners.com/)
+* [Q](https://github.com/kriskowal/q)
+* Bootstrap
+
+The output will then be in the ```dist``` directory and you may use your own build server.
 ### Attribution
 
 * [MapMarker Icons](https://www.iconfinder.com/iconsets/mapicons) Creative Commons (Attribution-Share Alike 3.0 Unported)
 * [Location Marker](https://www.iconfinder.com/iconsets/google-material-design-icons) Creative Commons (Attribution-Share Alike 3.0 Unported)
+* [Splash Page Image](https://www.dollarphotoclub.com/stock-photo/Portrait%20of%20African%20American%20Doctor/59847259) Standard Royalty Free License
